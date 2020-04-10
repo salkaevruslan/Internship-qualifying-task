@@ -10,8 +10,20 @@ import java.io.File
 
 class HashSumPluginTest {
     companion object {
-        val FILE_PATH: String
-            get() = "hash.txt"
+        val FILE_PATH_SHA_1: String
+            get() = "hash.sha1"
+        val FILE_PATH_MD_2: String
+            get() = "hash.md2"
+        val FILE_PATH_MD_5: String
+            get() = "hash.md5"
+        val FILE_PATH_SHA_224: String
+            get() = "hash.sha224"
+        val FILE_PATH_SHA_256: String
+            get() = "hash.sha256"
+        val FILE_PATH_SHA_384: String
+            get() = "hash.sha384"
+        val FILE_PATH_SHA_512: String
+            get() = "hash.sha512"
         const val CALCULATE_SHA_1_TASK_NAME = "calculateSha1"
         const val CALCULATE_MD_2_TASK_NAME = "calculateMd2"
         const val CALCULATE_MD_5_TASK_NAME = "calculateMd5"
@@ -44,7 +56,7 @@ class HashSumPluginTest {
     }
 
     private val exampleProjectDir: File =
-        File(System.getProperty("user.dir")).parentFile.resolve("example-project")
+        File(System.getProperty("user.dir")).parentFile//.resolve("example-project")
 
     private val project: Project = ProjectBuilder.builder().withProjectDir(exampleProjectDir).build()
 
@@ -67,7 +79,7 @@ class HashSumPluginTest {
         calculateSha1Task!!.actions.forEach {
             it.execute(calculateSha1Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_SHA_1)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isSHA1Content)
     }
 
@@ -78,7 +90,7 @@ class HashSumPluginTest {
         calculateMd2Task!!.actions.forEach {
             it.execute(calculateMd2Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_MD_2)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isMD2Content)
     }
 
@@ -89,7 +101,7 @@ class HashSumPluginTest {
         calculateMd5Task!!.actions.forEach {
             it.execute(calculateMd5Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_MD_5)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isMD5Content)
     }
 
@@ -100,7 +112,7 @@ class HashSumPluginTest {
         calculateSha224Task!!.actions.forEach {
             it.execute(calculateSha224Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_SHA_224)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isSHA224Content)
     }
 
@@ -111,7 +123,7 @@ class HashSumPluginTest {
         calculateSha256Task!!.actions.forEach {
             it.execute(calculateSha256Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_SHA_256)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isSHA256Content)
     }
 
@@ -122,7 +134,7 @@ class HashSumPluginTest {
         calculateSha384Task!!.actions.forEach {
             it.execute(calculateSha384Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_SHA_384)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isSHA384Content)
     }
 
@@ -133,7 +145,7 @@ class HashSumPluginTest {
         calculateSha512Task!!.actions.forEach {
             it.execute(calculateSha512Task)
         }
-        val hashSumFile = project.buildDir.resolve(FILE_PATH)
+        val hashSumFile = project.buildDir.resolve(FILE_PATH_SHA_512)
         assertTrue(hashSumFile.exists() && hashSumFile.readText().isSHA512Content)
     }
 }
